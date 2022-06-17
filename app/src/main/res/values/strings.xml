@@ -4,4 +4,9 @@
     <string name="i_already_have_an_account">I already have an account</string>
     <string name="landing_activity_short_description"><![CDATA[Crypto & Stock Market News,\nPortfolio Tracker]]></string>
     <string name="logo">TRA\nKN</string>
+    <string name="username_label">Username</string>
+    <string name="password_label">Password</string>
+    <string name="welcome_back">Welcome\nBack</string>
+    <string name="log_in">Log In</string>
+    <string name="i_don_t_have_an_account">I don\'t have an account</string>
 </resources>
