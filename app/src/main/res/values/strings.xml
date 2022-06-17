@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Trakn</string>
+    <string name="get_started">Get Started</string>
+    <string name="i_already_have_an_account">I already have an account</string>
+    <string name="landing_activity_short_description"><![CDATA[Crypto & Stock Market News,\nPortfolio Tracker]]></string>
+    <string name="logo">TRA\nKN</string>
 </resources>
