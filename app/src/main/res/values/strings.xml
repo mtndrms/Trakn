@@ -12,4 +12,8 @@
     <string name="register">Register</string>
     <string name="email">Email</string>
     <string name="continue_label">Continue</string>
+    <string name="portfolio">Portfolio</string>
+    <string name="favorites">Favorites</string>
+    <string name="news">News</string>
+    <string name="markets">Markets</string>
 </resources>
