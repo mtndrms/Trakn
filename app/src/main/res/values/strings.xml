@@ -9,4 +9,7 @@
     <string name="welcome_back">Welcome\nBack</string>
     <string name="log_in">Log In</string>
     <string name="i_don_t_have_an_account">I don\'t have an account</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="continue_label">Continue</string>
 </resources>
