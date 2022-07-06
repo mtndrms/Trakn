@@ -16,4 +16,5 @@
     <string name="favorites">Favorites</string>
     <string name="news">News</string>
     <string name="markets">Markets</string>
+    <string name="search">Search</string>
 </resources>
