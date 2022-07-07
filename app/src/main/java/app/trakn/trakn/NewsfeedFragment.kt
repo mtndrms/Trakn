@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import app.trakn.trakn.adapters.NewsfeedRecyclerViewAdapter
 import app.trakn.trakn.api.ApiClient
 import app.trakn.trakn.api.services.NewsfeedService
 import app.trakn.trakn.models.News
@@ -16,6 +19,7 @@ import retrofit2.Response
 class NewsfeedFragment : Fragment() {
     private lateinit var newsfeedService: NewsfeedService
     private lateinit var newsList: MutableList<News>
+    private lateinit var newsfeedRecyclerViewAdapter: NewsfeedRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,10 +29,11 @@ class NewsfeedFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_newsfeed, container, false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val apiClient = ApiClient(Constants.NEWS_API_URL)
+        val rvNewsList: RecyclerView = view.findViewById(R.id.newsList)
         newsfeedService = apiClient.retrofit?.create(NewsfeedService::class.java)!!
 
         val news = newsfeedService.getAll()
@@ -36,6 +41,9 @@ class NewsfeedFragment : Fragment() {
             override fun onResponse(call: Call<List<News>>, response: Response<List<News>>) {
                 if (response.isSuccessful) {
                     newsList = (response.body() as MutableList<News>)
+                    newsfeedRecyclerViewAdapter = NewsfeedRecyclerViewAdapter(newsList)
+                    rvNewsList.adapter = newsfeedRecyclerViewAdapter
+                    rvNewsList.layoutManager = LinearLayoutManager(requireContext())
                 }
             }
 

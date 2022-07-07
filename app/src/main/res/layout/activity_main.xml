@@ -11,7 +11,7 @@
         android:id="@+id/topBar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/markets"
+        android:background="@color/news_feed"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,6 +43,7 @@
     </RelativeLayout>
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainer"
         android:layout_width="0px"
         android:layout_height="0px"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
