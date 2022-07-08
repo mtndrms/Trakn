@@ -10,7 +10,7 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/news_feed"
+        android:background="@color/newsfeed"
         android:orientation="vertical"
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"

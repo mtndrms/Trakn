@@ -34,6 +34,8 @@ class NewsfeedFragment : Fragment() {
 
         val apiClient = ApiClient(Constants.NEWS_API_URL)
         val rvNewsList: RecyclerView = view.findViewById(R.id.newsList)
+
+        //TODO: Fix this. (!!)
         newsfeedService = apiClient.retrofit?.create(NewsfeedService::class.java)!!
 
         val news = newsfeedService.getAll()
