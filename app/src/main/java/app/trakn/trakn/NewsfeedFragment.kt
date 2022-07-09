@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import app.trakn.trakn.adapters.NewsfeedRecyclerViewAdapter
@@ -20,6 +22,15 @@ class NewsfeedFragment : Fragment() {
     private lateinit var newsfeedService: NewsfeedService
     private lateinit var newsList: MutableList<News>
     private lateinit var newsfeedRecyclerViewAdapter: NewsfeedRecyclerViewAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val topBar: RelativeLayout = requireActivity().findViewById(R.id.topBar)
+        topBar.setBackgroundColor(
+            ContextCompat.getColor(requireActivity(), R.color.newsfeed)
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import app.trakn.trakn.R
 
-object NavigationHelper {
+object BottomNavigationHelper {
 
     data class BottomNavigationLabelChildViews(
         val firstChild: ImageView,

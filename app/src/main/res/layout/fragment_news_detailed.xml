@@ -17,7 +17,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/worksans_bold"
-            android:text="Title"
             android:textColor="@color/black"
             android:textSize="36sp" />
 
@@ -28,7 +27,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/worksans_regular"
-            android:text="Source at 23:59"
             android:textSize="14sp" />
 
         <ImageView
@@ -45,7 +43,6 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/nunitosans_regular"
-            android:text="Details"
             android:textSize="18sp" />
     </LinearLayout>
 </ScrollView>

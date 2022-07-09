@@ -12,7 +12,6 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/worksans_regular"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -24,8 +23,6 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/title"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +33,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/worksans_regular"
-        android:text="Lorem Ipsum"
         app:layout_constraintEnd_toStartOf="@id/date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
@@ -48,7 +44,6 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/worksans_regular"
-        android:text="at 4:20PM"
         app:layout_constraintStart_toEndOf="@id/source"
         app:layout_constraintTop_toBottomOf="@id/title" />
 </androidx.constraintlayout.widget.ConstraintLayout>

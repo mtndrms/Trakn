@@ -1,26 +1,29 @@
 package app.trakn.trakn
 
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.core.content.ContextCompat
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import app.trakn.trakn.utils.NavigationHelper.changeColorOfChildViews
-import app.trakn.trakn.utils.NavigationHelper.defaultColorsForChildViews
-import app.trakn.trakn.utils.NavigationHelper.BottomNavigationLabelChildViews
+import app.trakn.trakn.utils.BottomNavigationHelper.BottomNavigationLabelChildViews
+import app.trakn.trakn.utils.BottomNavigationHelper.changeColorOfChildViews
+import app.trakn.trakn.utils.BottomNavigationHelper.defaultColorsForChildViews
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val topBar: RelativeLayout = findViewById(R.id.topBar)
         val btnPortfolio: LinearLayout = findViewById(R.id.portfolioLabel)
         val btnMarkets: LinearLayout = findViewById(R.id.marketsLabel)
         val btnNewsfeed: LinearLayout = findViewById(R.id.newsfeedLabel)
+        val btnMenu: ImageView = findViewById(R.id.btnMenu)
+        val btnNotifications: ImageView = findViewById(R.id.btnNotification)
+        val btnBack: ImageView = findViewById(R.id.btnBack)
+        val btnShare: ImageView = findViewById(R.id.btnShare)
 
         var state = "portfolioLabel"
 
@@ -31,6 +34,17 @@ class MainActivity : AppCompatActivity() {
                 addToBackStack(null)
                 commit()
             }
+        }
+
+        btnMenu.setOnClickListener {
+            val f: Fragment? = supportFragmentManager.findFragmentById(R.id.fragmentContainer)
+            if (f is NewsDetailedFragment) {
+                println("YES")
+            }
+        }
+
+        btnBack.setOnClickListener {
+            supportFragmentManager.popBackStack()
         }
 
         listOf(btnPortfolio, btnMarkets, btnNewsfeed).forEach { item ->
@@ -49,14 +63,9 @@ class MainActivity : AppCompatActivity() {
 
                 if (state != resources.getResourceEntryName(it.id)) {
                     when (resources.getResourceEntryName(it.id)) {
-                        "portfolioLabel" -> {
-                            topBar.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.black))
-                        }
-                        "marketsLabel" -> {
-                            topBar.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.markets))
-                        }
+                        "portfolioLabel" -> {}
+                        "marketsLabel" -> {}
                         "newsfeedLabel" -> {
-                            topBar.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.newsfeed))
                             changeFragment(NewsfeedFragment())
                         }
                     }

@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import app.trakn.trakn.NewsDetailedFragment
 import app.trakn.trakn.R
 import app.trakn.trakn.models.News
+import app.trakn.trakn.utils.TopBarHelper
+import com.squareup.picasso.Picasso
 
 
 class NewsfeedRecyclerViewAdapter(private val news: MutableList<News>) :
@@ -40,6 +42,11 @@ class NewsfeedRecyclerViewAdapter(private val news: MutableList<News>) :
         holder.title.text = news[position].title
         holder.source.text = news[position].albumId.toString()
         holder.date.text = news[position].id.toString()
+        Picasso.get()
+            .load(news[position].thumbnailUrl)
+            .resize(75, 75)
+            .centerCrop()
+            .into(holder.image)
         showDetails(holder.itemView, position)
     }
 
@@ -55,10 +62,12 @@ class NewsfeedRecyclerViewAdapter(private val news: MutableList<News>) :
             bundle.putString("details", news[position].title)
             bundle.putString("source", news[position].albumId.toString())
             bundle.putString("date", news[position].id.toString())
+            bundle.putString("url", news[position].url)
             val fragment: Fragment = NewsDetailedFragment()
             fragment.arguments = bundle
             activity.supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, fragment).addToBackStack(null).commit()
+                .replace(R.id.fragmentContainer, fragment, "DETAILS_FRAGMENT").addToBackStack(null)
+                .commit()
         }
     }
 }

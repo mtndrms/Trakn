@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/openLeftNavbar"
+            android:id="@+id/btnMenu"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_alignParentStart="true"
@@ -30,7 +30,7 @@
             app:tint="@color/white" />
 
         <ImageView
-            android:id="@+id/notifications"
+            android:id="@+id/btnNotification"
             android:layout_width="36dp"
             android:layout_height="36dp"
             android:layout_alignParentEnd="true"
@@ -39,6 +39,32 @@
             android:contentDescription="@string/app_name"
             android:focusable="true"
             android:src="@drawable/notifications_icon"
+            app:tint="@color/white" />
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="25dp"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"
+            android:focusable="true"
+            android:src="@drawable/back_icon"
+            android:visibility="invisible"
+            app:tint="@color/white" />
+
+        <ImageView
+            android:id="@+id/btnShare"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="25dp"
+            android:clickable="true"
+            android:contentDescription="@string/app_name"
+            android:focusable="true"
+            android:src="@drawable/share_icon"
+            android:visibility="invisible"
             app:tint="@color/white" />
     </RelativeLayout>
 
