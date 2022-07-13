@@ -11,5 +11,6 @@
     <color name="newsfeed">#575763</color>
     <color name="markets">#1C54FF</color>
     <color name="searchbox_background">#66BABABA</color>
+    <color name="market_horizontal_view_unselected">#99FFFFFF</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/background</color>
 </resources>

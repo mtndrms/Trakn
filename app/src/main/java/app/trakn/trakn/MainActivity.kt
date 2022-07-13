@@ -2,6 +2,7 @@ package app.trakn.trakn
 
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -63,7 +64,8 @@ class MainActivity : AppCompatActivity() {
 
                 if (state != resources.getResourceEntryName(it.id)) {
                     when (resources.getResourceEntryName(it.id)) {
-                        "portfolioLabel" -> {}
+                        "portfolioLabel" -> {
+                        }
                         "marketsLabel" -> {
                             changeFragment(MarketsFragment())
                         }

@@ -47,11 +47,11 @@ class NewsfeedFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val apiClient = ApiClient(Constants.NEWS_API_URL)
+
         val rvNewsList: RecyclerView = view.findViewById(R.id.newsList)
         val header: LinearLayout = view.findViewById(R.id.header)
 
-        //TODO: Fix this. (!!)
-        newsfeedService = apiClient.retrofit?.create(NewsfeedService::class.java)!!
+        newsfeedService = apiClient.retrofit!!.create(NewsfeedService::class.java)
 
         val news = newsfeedService.getAll()
         news.enqueue(object : Callback<List<News>> {

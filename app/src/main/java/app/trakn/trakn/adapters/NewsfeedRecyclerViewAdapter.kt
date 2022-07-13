@@ -12,9 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import app.trakn.trakn.NewsDetailedFragment
 import app.trakn.trakn.R
 import app.trakn.trakn.models.News
-import app.trakn.trakn.utils.TopBarHelper
 import com.squareup.picasso.Picasso
-
 
 class NewsfeedRecyclerViewAdapter(private val news: MutableList<News>) :
     RecyclerView.Adapter<NewsfeedRecyclerViewAdapter.ViewHolder>() {
@@ -34,7 +32,7 @@ class NewsfeedRecyclerViewAdapter(private val news: MutableList<News>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.newsfeed_recyclerview_item, parent, false)
+            .inflate(R.layout.recyclerview_newsfeed_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -50,9 +48,7 @@ class NewsfeedRecyclerViewAdapter(private val news: MutableList<News>) :
         showDetails(holder.itemView, position)
     }
 
-    override fun getItemCount(): Int {
-        return news.size
-    }
+    override fun getItemCount(): Int = news.size
 
     private fun showDetails(view: View, position: Int) {
         view.setOnClickListener {
