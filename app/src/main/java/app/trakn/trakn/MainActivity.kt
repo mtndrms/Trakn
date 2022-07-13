@@ -64,7 +64,9 @@ class MainActivity : AppCompatActivity() {
                 if (state != resources.getResourceEntryName(it.id)) {
                     when (resources.getResourceEntryName(it.id)) {
                         "portfolioLabel" -> {}
-                        "marketsLabel" -> {}
+                        "marketsLabel" -> {
+                            changeFragment(MarketsFragment())
+                        }
                         "newsfeedLabel" -> {
                             changeFragment(NewsfeedFragment())
                         }

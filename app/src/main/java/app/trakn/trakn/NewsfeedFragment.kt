@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +15,8 @@ import app.trakn.trakn.api.ApiClient
 import app.trakn.trakn.api.services.NewsfeedService
 import app.trakn.trakn.models.News
 import app.trakn.trakn.utils.Constants
+import app.trakn.trakn.utils.TopBarHelper.hideToolbar
+import app.trakn.trakn.utils.TopBarHelper.showToolbar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -45,6 +48,7 @@ class NewsfeedFragment : Fragment() {
 
         val apiClient = ApiClient(Constants.NEWS_API_URL)
         val rvNewsList: RecyclerView = view.findViewById(R.id.newsList)
+        val header: LinearLayout = view.findViewById(R.id.header)
 
         //TODO: Fix this. (!!)
         newsfeedService = apiClient.retrofit?.create(NewsfeedService::class.java)!!
@@ -62,6 +66,25 @@ class NewsfeedFragment : Fragment() {
 
             override fun onFailure(call: Call<List<News>>, t: Throwable) {
                 println(t.message.toString())
+            }
+        })
+
+        var state = 0
+        rvNewsList.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+
+                state = newState
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                if (dy > 0 && (state == 0 || state == 2)) {
+                    hideToolbar(header)
+                } else if (dy < -100) {
+                    showToolbar(header)
+                }
             }
         })
     }

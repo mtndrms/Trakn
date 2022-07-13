@@ -10,6 +10,6 @@
     <color name="background">#121212</color>
     <color name="newsfeed">#575763</color>
     <color name="markets">#1C54FF</color>
-    <color name="searchbox_background">#80808A</color>
+    <color name="searchbox_background">#66BABABA</color>
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/background</color>
 </resources>

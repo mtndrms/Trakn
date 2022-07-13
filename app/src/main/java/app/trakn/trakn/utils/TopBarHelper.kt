@@ -2,6 +2,7 @@ package app.trakn.trakn.utils
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 
 object TopBarHelper {
@@ -28,5 +29,13 @@ object TopBarHelper {
         btnNotifications.visibility = View.VISIBLE
         btnBack.visibility = View.INVISIBLE
         btnShare.visibility = View.INVISIBLE
+    }
+
+    fun showToolbar(header: LinearLayout) {
+        header.visibility = View.VISIBLE
+    }
+
+    fun hideToolbar(header: LinearLayout) {
+        header.visibility = View.GONE
     }
 }
