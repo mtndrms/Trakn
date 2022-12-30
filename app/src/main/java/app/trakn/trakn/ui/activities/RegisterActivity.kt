@@ -1,7 +1,8 @@
-package app.trakn.trakn
+package app.trakn.trakn.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import app.trakn.trakn.R
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

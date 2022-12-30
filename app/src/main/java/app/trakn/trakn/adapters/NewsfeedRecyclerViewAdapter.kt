@@ -9,7 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import app.trakn.trakn.NewsDetailedFragment
+import app.trakn.trakn.ui.fragments.NewsDetailedFragment
 import app.trakn.trakn.R
 import app.trakn.trakn.models.News
 import com.squareup.picasso.Picasso

@@ -1,6 +1,5 @@
-package app.trakn.trakn
+package app.trakn.trakn.ui.fragments
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import app.trakn.trakn.R
 import app.trakn.trakn.adapters.MarketCryptocurrencyRecyclerViewAdapter
 import app.trakn.trakn.api.ApiClient
 import app.trakn.trakn.api.services.CryptoService
@@ -21,7 +21,6 @@ import app.trakn.trakn.utils.TopBarHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
 
 class MarketsFragment : Fragment() {
 
@@ -79,7 +78,6 @@ class MarketsFragment : Fragment() {
         }
 
         for (item in 0 until horizontalScrollView.childCount) {
-            println("TEST")
             val button = horizontalScrollView.getChildAt(item) as AppCompatButton
             button.setOnClickListener {
                 button.setTextAppearance(context, R.style.HorizontalScrollView_SelectedOption)

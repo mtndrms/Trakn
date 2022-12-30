@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".ui.activities.MainActivity"
     tools:ignore="UseCompoundDrawables">
 
     <RelativeLayout
@@ -70,12 +70,14 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainer"
+        android:name="app.trakn.trakn.ui.fragments.PortfolioFragment"
         android:layout_width="0px"
         android:layout_height="0px"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topBar">
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        tools:layout="@layout/fragment_portfolio">
 
     </androidx.fragment.app.FragmentContainerView>
 

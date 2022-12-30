@@ -1,14 +1,15 @@
-package app.trakn.trakn
+package app.trakn.trakn.ui.activities
 
-import android.os.Build
 import android.os.Bundle
-import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import app.trakn.trakn.ui.fragments.MarketsFragment
+import app.trakn.trakn.ui.fragments.NewsDetailedFragment
+import app.trakn.trakn.ui.fragments.NewsfeedFragment
+import app.trakn.trakn.R
 import app.trakn.trakn.utils.BottomNavigationHelper.BottomNavigationLabelChildViews
 import app.trakn.trakn.utils.BottomNavigationHelper.changeColorOfChildViews
 import app.trakn.trakn.utils.BottomNavigationHelper.defaultColorsForChildViews

@@ -1,4 +1,4 @@
-package app.trakn.trakn
+package app.trakn.trakn.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +10,7 @@ import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import app.trakn.trakn.R
 import app.trakn.trakn.adapters.NewsfeedRecyclerViewAdapter
 import app.trakn.trakn.api.ApiClient
 import app.trakn.trakn.api.services.NewsfeedService

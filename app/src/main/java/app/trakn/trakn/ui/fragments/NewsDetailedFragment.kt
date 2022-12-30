@@ -1,4 +1,4 @@
-package app.trakn.trakn
+package app.trakn.trakn.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import app.trakn.trakn.R
 import app.trakn.trakn.utils.Helper.times
 import app.trakn.trakn.utils.TopBarHelper
 import com.squareup.picasso.Picasso
