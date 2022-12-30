@@ -1,13 +1,19 @@
 package app.trakn.trakn.adapters
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import app.trakn.trakn.R
 import app.trakn.trakn.models.Cryptocurrency
+import app.trakn.trakn.ui.fragments.CryptocurrencyDetailedFragment
+import app.trakn.trakn.ui.fragments.NewsDetailedFragment
 import app.trakn.trakn.utils.Helper.format
 import com.squareup.picasso.Picasso
 
@@ -46,7 +52,24 @@ class MarketCryptocurrencyRecyclerViewAdapter(private val data: List<Cryptocurre
             change.text = data[position].priceChange1d.toString()
             Picasso.get().load(data[position].icon).into(image)
         }
+
+        showDetails(holder.itemView, position)
     }
 
     override fun getItemCount(): Int = data.size
+
+    private fun showDetails(view: View, position: Int) {
+        view.setOnClickListener {
+            val activity = view.context as AppCompatActivity
+            val fragment: Fragment = CryptocurrencyDetailedFragment()
+            val bundle = Bundle()
+
+            bundle.putString("id", data[position].id)
+            fragment.arguments = bundle
+
+            activity.supportFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, fragment, "CRYPTOCURRENCY_DETAILS_FRAGMENT")
+                .addToBackStack(null).commit()
+        }
+    }
 }

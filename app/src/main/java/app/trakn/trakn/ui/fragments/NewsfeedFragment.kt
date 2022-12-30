@@ -14,7 +14,7 @@ import app.trakn.trakn.R
 import app.trakn.trakn.adapters.NewsfeedRecyclerViewAdapter
 import app.trakn.trakn.api.ApiClient
 import app.trakn.trakn.api.services.NewsfeedService
-import app.trakn.trakn.models.News
+import app.trakn.trakn.models.responses.News
 import app.trakn.trakn.utils.Constants
 import app.trakn.trakn.utils.TopBarHelper.hideToolbar
 import app.trakn.trakn.utils.TopBarHelper.showToolbar
@@ -24,7 +24,7 @@ import retrofit2.Response
 
 class NewsfeedFragment : Fragment() {
     private lateinit var newsfeedService: NewsfeedService
-    private lateinit var newsList: MutableList<News>
+    private lateinit var newsList: News
     private lateinit var newsfeedRecyclerViewAdapter: NewsfeedRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,31 +47,31 @@ class NewsfeedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val apiClient = ApiClient(Constants.NEWS_API_URL)
+        val apiClient = ApiClient(Constants.CRYPTOCURRENCY_API_URL)
 
         val rvNewsList: RecyclerView = view.findViewById(R.id.newsList)
         val header: LinearLayout = view.findViewById(R.id.header)
 
         newsfeedService = apiClient.retrofit!!.create(NewsfeedService::class.java)
 
-        val news = newsfeedService.getAll()
-        news.enqueue(object : Callback<List<News>> {
-            override fun onResponse(call: Call<List<News>>, response: Response<List<News>>) {
+        val news = newsfeedService.getAllCryptocurrencyNews(0, 3, null, null)
+        news.enqueue(object : Callback<News> {
+            override fun onResponse(call: Call<News>, response: Response<News>) {
                 if (response.isSuccessful) {
-                    newsList = (response.body() as MutableList<News>)
-                    newsfeedRecyclerViewAdapter = NewsfeedRecyclerViewAdapter(newsList)
+                    newsList = (response.body() as News)
+                    newsfeedRecyclerViewAdapter = NewsfeedRecyclerViewAdapter(newsList.news)
                     rvNewsList.adapter = newsfeedRecyclerViewAdapter
                     rvNewsList.layoutManager = LinearLayoutManager(requireContext())
                 }
             }
 
-            override fun onFailure(call: Call<List<News>>, t: Throwable) {
+            override fun onFailure(call: Call<News>, t: Throwable) {
                 println(t.message.toString())
             }
         })
 
         var state = 0
-        rvNewsList.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+        rvNewsList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
 

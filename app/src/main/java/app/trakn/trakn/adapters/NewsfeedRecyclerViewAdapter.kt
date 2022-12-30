@@ -11,10 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import app.trakn.trakn.ui.fragments.NewsDetailedFragment
 import app.trakn.trakn.R
-import app.trakn.trakn.models.News
+import app.trakn.trakn.models.New
+import app.trakn.trakn.models.responses.News
 import com.squareup.picasso.Picasso
 
-class NewsfeedRecyclerViewAdapter(private val news: MutableList<News>) :
+class NewsfeedRecyclerViewAdapter(private val news: List<New>) :
     RecyclerView.Adapter<NewsfeedRecyclerViewAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView
@@ -38,10 +39,10 @@ class NewsfeedRecyclerViewAdapter(private val news: MutableList<News>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.title.text = news[position].title
-        holder.source.text = news[position].albumId.toString()
+        holder.source.text = news[position].source
         holder.date.text = news[position].id.toString()
         Picasso.get()
-            .load(news[position].thumbnailUrl)
+            .load(news[position].imgURL)
             .resize(75, 75)
             .centerCrop()
             .into(holder.image)
@@ -55,14 +56,15 @@ class NewsfeedRecyclerViewAdapter(private val news: MutableList<News>) :
             val activity = view.context as AppCompatActivity
             val bundle = Bundle()
             bundle.putString("title", news[position].title)
-            bundle.putString("details", news[position].title)
-            bundle.putString("source", news[position].albumId.toString())
-            bundle.putString("date", news[position].id.toString())
-            bundle.putString("url", news[position].url)
+            bundle.putString("details", news[position].description)
+            bundle.putString("source", news[position].source)
+            bundle.putString("date", news[position].feedDate.toString())
+            bundle.putString("url", news[position].imgURL)
             val fragment: Fragment = NewsDetailedFragment()
             fragment.arguments = bundle
             activity.supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, fragment, "DETAILS_FRAGMENT").addToBackStack(null)
+                .replace(R.id.fragmentContainer, fragment, "NEWS_DETAILS_FRAGMENT")
+                .addToBackStack(null)
                 .commit()
         }
     }

@@ -43,7 +43,7 @@ class NewsDetailedFragment : Fragment() {
         val url = requireArguments().getString("url", "null")
 
         tvTitle.text = title
-        tvDetails.text = details.times(10)
+        tvDetails.text = details
         "$source at $date".also { tvSourceAndDate.text = it }
         Picasso.get()
             .load(url)

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import app.trakn.trakn.R
 import app.trakn.trakn.adapters.MarketCryptocurrencyRecyclerViewAdapter
 import app.trakn.trakn.api.ApiClient
-import app.trakn.trakn.api.services.CryptoService
+import app.trakn.trakn.api.services.CryptocurrencyService
 import app.trakn.trakn.models.responses.Coin
 import app.trakn.trakn.utils.Constants
 import retrofit2.Call
@@ -23,7 +23,7 @@ import retrofit2.Response
 
 class MarketsFragment : Fragment() {
 
-    private lateinit var cryptoService: CryptoService
+    private lateinit var cryptocurrencyService: CryptocurrencyService
     private lateinit var tickerList: Coin
     private lateinit var marketCryptocurrencyRecyclerViewAdapter: MarketCryptocurrencyRecyclerViewAdapter
 
@@ -53,9 +53,9 @@ class MarketsFragment : Fragment() {
         val rvTickers: RecyclerView = view.findViewById(R.id.rvTickers)
 
         fun getAndDisplayData() {
-            cryptoService = apiClient.retrofit!!.create(CryptoService::class.java)
+            cryptocurrencyService = apiClient.retrofit!!.create(CryptocurrencyService::class.java)
 
-            val tickers = cryptoService.getMarketData("USD", 0, 2000)
+            val tickers = cryptocurrencyService.getMarketData("USD", 0, 2000)
             tickers.enqueue(object : Callback<Coin> {
                 override fun onResponse(
                     call: Call<Coin>,
