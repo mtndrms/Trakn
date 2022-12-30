@@ -8,4 +8,8 @@ object Helper {
         }
         return result
     }
+
+    fun Double.format(digitCount: Int): Double {
+        return String.format("%.${digitCount}f", this).toDouble()
+    }
 }

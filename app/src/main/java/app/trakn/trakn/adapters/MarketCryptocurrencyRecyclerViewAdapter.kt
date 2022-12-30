@@ -8,9 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import app.trakn.trakn.R
 import app.trakn.trakn.models.Cryptocurrency
+import app.trakn.trakn.utils.Helper.format
 import com.squareup.picasso.Picasso
 
-class MarketCryptocurrencyRecyclerViewAdapter(private val data: MutableList<Cryptocurrency>) :
+class MarketCryptocurrencyRecyclerViewAdapter(private val data: List<Cryptocurrency>) :
     RecyclerView.Adapter<MarketCryptocurrencyRecyclerViewAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView
@@ -31,7 +32,8 @@ class MarketCryptocurrencyRecyclerViewAdapter(private val data: MutableList<Cryp
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_market_item, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.recyclerview_market_item, parent, false)
         return ViewHolder(view)
     }
 
@@ -39,10 +41,10 @@ class MarketCryptocurrencyRecyclerViewAdapter(private val data: MutableList<Cryp
         holder.run {
             name.text = data[position].name
             symbol.text = data[position].symbol
-            rank.text = data[position].market_cap_rank
-            price.text = data[position].current_price
-            change.text = data[position].price_change_percentage_24h
-            Picasso.get().load(data[position].image).into(image)
+            rank.text = data[position].rank.toString()
+            price.text = data[position].price.format(2).toString()
+            change.text = data[position].priceChange1d.toString()
+            Picasso.get().load(data[position].icon).into(image)
         }
     }
 

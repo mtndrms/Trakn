@@ -15,9 +15,8 @@ import app.trakn.trakn.R
 import app.trakn.trakn.adapters.MarketCryptocurrencyRecyclerViewAdapter
 import app.trakn.trakn.api.ApiClient
 import app.trakn.trakn.api.services.CryptoService
-import app.trakn.trakn.models.Cryptocurrency
+import app.trakn.trakn.models.responses.Coin
 import app.trakn.trakn.utils.Constants
-import app.trakn.trakn.utils.TopBarHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,7 +24,7 @@ import retrofit2.Response
 class MarketsFragment : Fragment() {
 
     private lateinit var cryptoService: CryptoService
-    private lateinit var tickerList: MutableList<Cryptocurrency>
+    private lateinit var tickerList: Coin
     private lateinit var marketCryptocurrencyRecyclerViewAdapter: MarketCryptocurrencyRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,22 +55,22 @@ class MarketsFragment : Fragment() {
         fun getAndDisplayData() {
             cryptoService = apiClient.retrofit!!.create(CryptoService::class.java)
 
-            val tickers = cryptoService.getMarketData("usd", "market_cap_desc", 25, 1, false)
-            tickers.enqueue(object : Callback<List<Cryptocurrency>> {
+            val tickers = cryptoService.getMarketData("USD", 0, 2000)
+            tickers.enqueue(object : Callback<Coin> {
                 override fun onResponse(
-                    call: Call<List<Cryptocurrency>>,
-                    response: Response<List<Cryptocurrency>>
+                    call: Call<Coin>,
+                    response: Response<Coin>
                 ) {
                     if (response.isSuccessful) {
-                        tickerList = (response.body() as MutableList<Cryptocurrency>)
+                        tickerList = (response.body() as Coin)
                         marketCryptocurrencyRecyclerViewAdapter =
-                            MarketCryptocurrencyRecyclerViewAdapter(tickerList)
+                            MarketCryptocurrencyRecyclerViewAdapter(tickerList.coins)
                         rvTickers.adapter = marketCryptocurrencyRecyclerViewAdapter
                         rvTickers.layoutManager = LinearLayoutManager(requireContext())
                     }
                 }
 
-                override fun onFailure(call: Call<List<Cryptocurrency>>, t: Throwable) {
+                override fun onFailure(call: Call<Coin>, t: Throwable) {
                     println(t.message.toString())
                 }
             })
@@ -100,23 +99,23 @@ class MarketsFragment : Fragment() {
             }
         }
 
-        var state = 0
-        rvTickers.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-
-                state = newState
-            }
-
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-
-                if (dy > 0 && (state == 0 || state == 2)) {
-                    TopBarHelper.hideToolbar(header)
-                } else if (dy < -100) {
-                    TopBarHelper.showToolbar(header)
-                }
-            }
-        })
+//        var state = 0
+//        rvTickers.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//                super.onScrollStateChanged(recyclerView, newState)
+//
+//                state = newState
+//            }
+//
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//
+//                if (dy > 0 && (state == 0 || state == 2)) {
+//                    TopBarHelper.hideToolbar(header)
+//                } else if (dy < -100) {
+//                    TopBarHelper.showToolbar(header)
+//                }
+//            }
+//        })
     }
 }

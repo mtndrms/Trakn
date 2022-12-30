@@ -1,18 +1,16 @@
 package app.trakn.trakn.api.services
 
-import app.trakn.trakn.models.Cryptocurrency
+import app.trakn.trakn.models.responses.Coin
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface CryptoService {
 
-    @GET("coins/markets")
+    @GET("coins")
     fun getMarketData(
-        @Query("vs_currency") vsCurrency: String,
-        @Query("order") order: String,
-        @Query("per_page") perPage: Int,
-        @Query("page") page: Int,
-        @Query("sparkline") sparkline: Boolean
-    ): Call<List<Cryptocurrency>>
+        @Query("currency") currency: String,
+        @Query("skip") skip: Int,
+        @Query("limit") limit: Int
+    ): Call<Coin>
 }
